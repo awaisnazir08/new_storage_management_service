@@ -1,0 +1,15 @@
+/.env
+__pycache__/config.cpython-311.pyc
+*/__pycache__/
+__pycache__/*
+*/__pycache__/*
+
+first-scout-444113-h2-72968e1f4f18.json
+test_video.mp4
+test_upload_api.py
+test_video3.mp4
+test_video4.mp4
+test.mkv
+test_video5.mp4
+teset.mkv
+.env
