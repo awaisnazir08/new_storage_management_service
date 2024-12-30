@@ -2,10 +2,11 @@ from google.cloud import storage
 from config import CLOUD_PROJECT_ID
 from io import BytesIO
 import datetime
-
+from google.oauth2 import service_account
 class GCSService:
     def __init__(self, bucket_name):
-        self.client = storage.Client(project=CLOUD_PROJECT_ID)
+        credentials = service_account.Credentials.from_service_account_file(r'first-scout-444113-h2-b60899a0d7a5.json')
+        self.client = storage.Client(project=CLOUD_PROJECT_ID, credentials=credentials)
         self.bucket = self.client.bucket(bucket_name)
 
     def upload_file(self, filename, file):
@@ -47,10 +48,8 @@ class GCSService:
 
         url = blob.generate_signed_url(
             version="v4",
-            # This URL is valid for 15 minutes
             expiration=datetime.timedelta(minutes=15),
-            # Allow GET requests using this URL.
-            method="GET",
+            method="GET"
         )
 
         print("Generated GET signed URL:")
