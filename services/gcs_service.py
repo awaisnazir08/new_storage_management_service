@@ -3,9 +3,11 @@ from config import CLOUD_PROJECT_ID
 from io import BytesIO
 import datetime
 from google.oauth2 import service_account
+import os
+
 class GCSService:
     def __init__(self, bucket_name):
-        credentials = service_account.Credentials.from_service_account_file(r'first-scout-444113-h2-b60899a0d7a5.json')
+        credentials = service_account.Credentials.from_service_account_file(os.getenv("SERVICE_ACCOUNT_KEY_PATH"))
         self.client = storage.Client(project=CLOUD_PROJECT_ID, credentials=credentials)
         self.bucket = self.client.bucket(bucket_name)
 
